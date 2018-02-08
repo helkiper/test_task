@@ -1,3 +1,3 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+helkiper_blog:
+    resource: "@HelkiperBlogBundle/Resources/config/routing.yml"
+    prefix:   /
