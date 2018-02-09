@@ -21,25 +21,25 @@ class CategoryFixtures extends Fixture
 		$newsCategory->setName('Новости');
 		$newsCategory->setDescription('');
 		$manager->persist($newsCategory);
-		$this->addReference('news-categoruy', $newsCategory);
+		$this->addReference('news-category', $newsCategory);
 
 		$usefulCategory = new Category();
 		$usefulCategory->setName('Полезное');
 		$usefulCategory->setDescription('Здесь содержатся всякие познавательные и обучающие посты');
 		$manager->persist($usefulCategory);
-		$this->addReference('useful-categoruy', $usefulCategory);
+		$this->addReference('useful-category', $usefulCategory);
 
 		$reviewCategory = new Category();
 		$reviewCategory->setName('Обзоры');
 		$reviewCategory->setDescription('Обзоры последних событий');
 		$manager->persist($reviewCategory);
-		$this->addReference('review-categoruy', $reviewCategory);
+		$this->addReference('review-category', $reviewCategory);
 
 		$otherCategory = new Category();
 		$otherCategory->setName('Прочее');
 		$otherCategory->setDescription('Здесь содержатся посты, не попавшие в другие категории');
 		$manager->persist($otherCategory);
-		$this->addReference('other-categoruy', $otherCategory);
+		$this->addReference('other-category', $otherCategory);
 
 		$manager->flush();
 	}
