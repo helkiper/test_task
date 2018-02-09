@@ -22,7 +22,7 @@ class PostController extends Controller
 
         $posts = $em->getRepository('HelkiperBlogBundle:Post')->findAll();
 
-        return $this->render('post/index.html.twig', array(
+        return $this->render('@HelkiperBlog/post/index.html.twig', array(
             'posts' => $posts,
         ));
     }
