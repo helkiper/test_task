@@ -4,7 +4,7 @@ namespace Helkiper\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class CategoryControllerTest extends WebTestCase
 {
     public function testIndex()
     {
