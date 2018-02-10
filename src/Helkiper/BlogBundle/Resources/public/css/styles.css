@@ -6,9 +6,11 @@
     background-color: #005cbf;
 }
 
-/*article{*/
-    /*border: 1px solid #0d747c;*/
-/*}*/
+footer{
+    background-color: gray;
+    margin-bottom: 0;
+    padding: 10px;
+}
 
 .post-image {
     width: 190px;
@@ -22,13 +24,15 @@
     clear: both;
     margin-top: 20px;
     border-top: 1px solid #0d747c;
+    padding: 10px;
+    line-height: 2.5em;
 }
 
-form div{
+form.main div{
     clear: left;
     margin-bottom: 10px;
 }
-form label{
+form.main  label{
     float: left;
     margin-right: 10px;
     text-align: right;
@@ -37,23 +41,19 @@ form label{
     vertical-align: top;
     padding-top: 10px;
 }
-form input[type="text"],
-form select{
+form.main  input[type="text"],
+form.main  select{
     width: 500px;
     line-height: 26px;
-    /*font-size: 26px;*/
     min-height: 26px;
 }
-form textarea{
+form.main  textarea{
     width: 500px;
     height: 150px;
     line-height: 26px;
-    /*font-size: 20px;*/
 }
-form input[type="submit"]{
+form.main input[type="submit"]{
     margin-left: 110px;
-    /*width: 508px;*/
     line-height: 26px;
-    /*font-size: 20px;*/
     min-height: 26px;
 }
