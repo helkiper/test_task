@@ -2,6 +2,7 @@
 
 namespace Helkiper\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,6 +49,15 @@ class Post
      */
     private $category;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+	 */
+	private $comments;
+
+	public function __construct()
+	{
+		$this->comments = new ArrayCollection();
+	}
 
     /**
      * Get id.
@@ -153,5 +163,41 @@ class Post
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \Helkiper\BlogBundle\Entity\Comment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\Helkiper\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \Helkiper\BlogBundle\Entity\Comment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\Helkiper\BlogBundle\Entity\Comment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

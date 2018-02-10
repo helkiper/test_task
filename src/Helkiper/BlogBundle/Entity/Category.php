@@ -39,14 +39,20 @@ class Category
 	/**
 	 * @ORM\OneToMany(targetEntity="Post", mappedBy="category")
 	 */
-    private $posts;
+	private $posts;
 
-    public function __construct()
+	/**
+	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="category")
+	 */
+	private $comments;
+
+	public function __construct()
     {
     	$this->posts = new ArrayCollection();
+    	$this->comments = new ArrayCollection();
     }
 
-    public function __toString()
+	public function __toString()
     {
 	    return $this->name;
     }
@@ -143,5 +149,41 @@ class Category
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \Helkiper\BlogBundle\Entity\Comment $comment
+     *
+     * @return Category
+     */
+    public function addComment(\Helkiper\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \Helkiper\BlogBundle\Entity\Comment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\Helkiper\BlogBundle\Entity\Comment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

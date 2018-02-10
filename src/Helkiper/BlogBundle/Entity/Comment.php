@@ -42,18 +42,16 @@ class Comment
      */
     private $createdAt;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="post", type="integer")
-     */
+	/**
+	 * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+	 * @ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="CASCADE")
+	 */
     private $post;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="category", type="integer")
-     */
+	/**
+	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="comments")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")
+	 */
     private $category;
 
 
