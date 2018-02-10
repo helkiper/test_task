@@ -1,16 +1,20 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-    <h1>Category creation</h1>
+{% block header %}
+    <h1>Создать категорию</h1>
+{% endblock %}
 
+{% block content %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Создать" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="controls">
+        <ul>
+            <li>
+                <a href="{{ path('category_index') }}">Назад к списку категорий</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

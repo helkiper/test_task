@@ -1,41 +1,28 @@
 {% extends 'layout.html.twig' %}
 
+{% block header %}
+    <h1>Список категорий</h1>
+{% endblock %}
+
 {% block content %}
-    <h1>Categories list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row list-group">
         {% for category in categories %}
-            <tr>
-                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <article class="col-xs-12 list-group-item">
+                <h4>
+                    <a href="{{ path('category_show', {'id': category.id}) }}" class="read-more">{{ category.name }}</a>
+                </h4>
+                <small>
+                    {{ category.description }}
+                </small>
+            </article>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+    <div class="controls">
+        <ul>
+            <li>
+                <a href="{{ path('category_new') }}">Создать категорию</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

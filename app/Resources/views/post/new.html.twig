@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-    <h1>Post creation</h1>
+{% block header %}
+    <h1>Создать пост</h1>
+{% endblock %}
 
+{% block content %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Создать" />
