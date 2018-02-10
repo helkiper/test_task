@@ -12,10 +12,8 @@
     </div>
 
     {% if posts|length > 0 %}
-        <div class="row list-group">
-            <h2>Посты</h2>
-            {% include 'post/post_list.html.twig' %}
-        </div>
+        <h2>Посты</h2>
+        {% include 'post/post_list.html.twig' %}
     {% endif %}
 
     {% if comments | length > 0 %}
