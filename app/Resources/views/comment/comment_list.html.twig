@@ -1,5 +1,9 @@
-{% for comment in comments %}
-    {{ comment.author }}<br />
-    {{ comment.createdAt|date('Y-m-d H:i:s') }}<br />
-    {{ comment.content }}<br />
-{% endfor %}
+<div class="row list-group">
+    <h2>Коментарии</h2>
+
+    {% for comment in comments %}
+        {{ comment.author }}<br />
+        {{ comment.createdAt|date('Y-m-d H:i:s') }}<br />
+        {{ comment.content }}<br />
+    {% endfor %}
+</div>

@@ -27,22 +27,6 @@
         <h2>Коментарии</h2>
         {% include 'comment/comment_list.html.twig' %}
     </div>
-        {#<article class="col-xs-12#}{# list-group-item#}{#">
-            <div>
-                <div>
-                    <span class="category pull-right">Категория:&nbsp;{{ post.category }}</span>
-                    {% if post.file %}
-                        <div>
-                            <img class="post-image" src="{{ asset('bundles/helkiperblog/images/uploads/'~post.file) }}">
-                        </div>
-                    {% endif %}
-                    <div>
-                        {{ post.content | nl2br }}
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>#}
 
     <div class="controls">
     <ul>
