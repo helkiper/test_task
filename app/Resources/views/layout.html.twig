@@ -1,18 +1,47 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/helkiperblog/bootstrap/css/amelia.bootstrap.min.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/helkiperblog/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/helkiperblog/js/jquery-3.3.1.min.js') }}"></script>
+{% endblock %}
+
 {% block body %}
     {{ parent() }}
-    <nav>
-        <ul>
-            <li>
-                <a href="{{ path('helkiper_blog_index') }}">Посты</a>
-            </li>
-            <li>
-                <a href="{{ path('category_index') }}">Категории</a>
-            </li>
-        </ul>
-    </nav>
-    <div>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('helkiper_blog_index') }}">Посты</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse", data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar-main" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{ path('category_index') }}">Категории</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         {% block content %}{% endblock %}
+
+        <footer>
+            <div class="row">
+                <div class="col-xs-12">
+                    <small>&copy; Helkiper 2018</small>
+                </div>
+            </div>
+        </footer>
     </div>
 {% endblock %}
