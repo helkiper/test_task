@@ -1,9 +1,15 @@
-<div class="row list-group">
-    <h2>Коментарии</h2>
+<h2>Коментарии</h2>
 
+<div class="row list-group">
     {% for comment in comments %}
-        {{ comment.author }}<br />
-        {{ comment.createdAt|date('Y-m-d H:i:s') }}<br />
-        {{ comment.content }}<br />
+        <article class="col-xs-12 list-group-item">
+            <p>
+                <strong>{{ comment.author }}</strong>
+                <span class="category pull-right">{{ comment.createdAt|date('Y-m-d') }}</span>
+            </p>
+            <p>
+                <small>{{ comment.content }}</small>
+            </p>
+        </article>
     {% endfor %}
 </div>
