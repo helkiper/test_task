@@ -4,4 +4,9 @@ helkiper_blog_category:
 
 helkiper_blog_post:
     resource: "@HelkiperBlogBundle/Resources/config/routing/post.yml"
-    prefix:   /
+    prefix:   /post
+
+helkiper_blog_index:
+    path:     /
+    defaults: { _controller: "HelkiperBlogBundle:Post:index" }
+    methods:  GET
