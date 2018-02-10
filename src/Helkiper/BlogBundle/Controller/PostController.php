@@ -57,10 +57,14 @@ class PostController extends Controller
      */
     public function showAction(Post $post)
     {
+    	$em = $this->getDoctrine()->getManager();
+    	$comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInPost($post->getId());
+
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,
+            'comments' => $comments,
             'delete_form' => $deleteForm->createView(),
         ));
     }

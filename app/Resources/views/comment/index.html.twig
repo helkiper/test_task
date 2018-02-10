@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    {% for comment in comments %}
-        {{ comment.author }}<br />
-        {{ comment.createdAt|date('Y-m-d H:i:s') }}<br />
-        {{ comment.content }}<br />
-    {% endfor %}
-{% endblock %}

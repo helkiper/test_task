@@ -59,8 +59,14 @@ class CategoryController extends Controller
     {
         $deleteForm = $this->createDeleteForm($category);
 
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('HelkiperBlogBundle:Post')->getPostsInCategory($category->getId());
+        $comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInCategory($category->getId());
+
         return $this->render('category/show.html.twig', array(
             'category' => $category,
+            'posts' => $posts,
+            'comments' => $comments,
             'delete_form' => $deleteForm->createView(),
         ));
     }

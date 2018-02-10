@@ -22,7 +22,7 @@ class CommentController extends Controller
 
         $comments = $em->getRepository('HelkiperBlogBundle:Comment')->findAll();
 
-        return $this->render('comment/index.html.twig', array(
+        return $this->render('comment_list.html.twig', array(
             'comments' => $comments,
         ));
     }
