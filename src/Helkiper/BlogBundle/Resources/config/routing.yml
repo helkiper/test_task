@@ -6,6 +6,11 @@ helkiper_blog_post:
     resource: "@HelkiperBlogBundle/Resources/config/routing/post.yml"
     prefix:   /post
 
+ helkiper_blog_comment:
+    resource: "@HelkiperBlogBundle/Resources/config/routing/comment.yml"
+    prefix:   /comment
+
+
 helkiper_blog_index:
     path:     /
     defaults: { _controller: "HelkiperBlogBundle:Post:index" }
