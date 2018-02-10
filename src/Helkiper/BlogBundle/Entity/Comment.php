@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="Helkiper\BlogBundle\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
@@ -38,7 +39,7 @@ class Comment
     /**
      * @var datetime_immutable
      *
-     * @ORM\Column(name="createdAt", type="datetime_immutable")
+     * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
 
@@ -116,7 +117,7 @@ class Comment
     /**
      * Set createdAt.
      *
-     * @param datetime_immutable $createdAt
+     * @param datetime $createdAt
      *
      * @return Comment
      */
@@ -130,7 +131,7 @@ class Comment
     /**
      * Get createdAt.
      *
-     * @return datetime_immutable
+     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -183,5 +184,12 @@ class Comment
     public function getCategory()
     {
         return $this->category;
+    }
+
+	/**
+	 * @ORM\PrePersist()
+	 */
+    public function setCreatedAtValue(){
+    	$this->setCreatedAt(new \DateTime());
     }
 }
