@@ -141,11 +141,11 @@ class Comment
     /**
      * Set post.
      *
-     * @param int $post
+     * @param \Helkiper\BlogBundle\Entity\Post $post
      *
      * @return Comment
      */
-    public function setPost($post)
+    public function setPost(\Helkiper\BlogBundle\Entity\Post $post)
     {
         $this->post = $post;
 
@@ -155,7 +155,7 @@ class Comment
     /**
      * Get post.
      *
-     * @return int
+     * @return \Helkiper\BlogBundle\Entity\Post
      */
     public function getPost()
     {
@@ -165,11 +165,11 @@ class Comment
     /**
      * Set category.
      *
-     * @param int $category
+     * @param \Helkiper\BlogBundle\Entity\Category $category
      *
      * @return Comment
      */
-    public function setCategory($category)
+    public function setCategory(\Helkiper\BlogBundle\Entity\Category $category)
     {
         $this->category = $category;
 
@@ -179,7 +179,7 @@ class Comment
     /**
      * Get category.
      *
-     * @return int
+     * @return \Helkiper\BlogBundle\Entity\Category
      */
     public function getCategory()
     {
