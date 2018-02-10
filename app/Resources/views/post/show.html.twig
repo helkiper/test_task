@@ -1,40 +1,41 @@
 {% extends 'layout.html.twig' %}
 
+{% block header %}
+    <h1>{{ post.name }}</h1>
+{% endblock %}
+
 {% block content %}
-    <h1>Post</h1>
+<div class="row list-group">
+    <article class="col-xs-12{# list-group-item#}">
+        <div class="preview">
+            <div>
+                <span class="category pull-right">Категория:&nbsp;{{ post.category }}</span>
+                {% if post.file %}
+                    <div>
+                        <img class="post-image" src="{{ asset('bundles/helkiperblog/images/uploads/'~post.file) }}">
+                    </div>
+                {% endif %}
+                <div>
+                    {{ post.content | nl2br }}
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ post.name }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ post.content }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ post.file }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+<div class="controls">
     <ul>
         <li>
-            <a href="{{ path('helkiper_blog_index') }}">Back to the list</a>
+            <a href="{{ path('helkiper_blog_index') }}">На главную</a>
         </li>
         <li>
-            <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
+            <a href="{{ path('post_edit', { 'id': post.id }) }}">Редактировать</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Удалить">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+</div>
 {% endblock %}

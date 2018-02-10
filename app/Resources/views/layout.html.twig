@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/helkiperblog/bootstrap/css/amelia.bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/helkiperblog/css/styles.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
@@ -33,7 +34,16 @@
             </div>
         </div>
     </div>
+
     <div class="container">
+        <div id="bunner" class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    {% block header %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
         {% block content %}{% endblock %}
 
         <footer>
