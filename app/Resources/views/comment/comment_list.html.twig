@@ -1,3 +1,4 @@
+{% if comments|length > 0 %}
 <h2>Коментарии</h2>
 
 <div class="row list-group">
@@ -13,3 +14,4 @@
         </article>
     {% endfor %}
 </div>
+{% endfor %}
