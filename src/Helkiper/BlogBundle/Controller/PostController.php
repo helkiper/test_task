@@ -59,7 +59,7 @@ class PostController extends Controller
     public function showAction(Post $post)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInPost($post->getId());
+    	$comments = $em->getRepository('HelkiperBlogBundle:Comment')->findBy(array('post' => $post));
 
 	    $comment = new Comment();
 	    $comment->setPost($post);

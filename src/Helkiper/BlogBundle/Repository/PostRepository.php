@@ -9,13 +9,4 @@ namespace Helkiper\BlogBundle\Repository;
  * repository methods below.
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
-{
-	public function getPostsInCategory($categoryId){
-		return  $this->createQueryBuilder('p')
-			->where('p.category = :category_id')
-			->setParameter('category_id', $categoryId)
-			->getQuery()
-			->getResult();
-
-	}
-}
+{}

@@ -61,8 +61,8 @@ class CategoryController extends Controller
         $deleteForm = $this->createDeleteForm($category);
 
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('HelkiperBlogBundle:Post')->getPostsInCategory($category->getId());
-        $comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInCategory($category->getId());
+        $posts = $em->getRepository('HelkiperBlogBundle:Post')->findBy(array('category' => $category));
+        $comments = $em->getRepository('HelkiperBlogBundle:Comment')->findBy(array('category' => $category));
 
         $comment = new Comment();
         $comment->setCategory($category);

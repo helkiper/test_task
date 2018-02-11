@@ -9,22 +9,4 @@ namespace Helkiper\BlogBundle\Repository;
  * repository methods below.
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
-{
-	public function getCommentsInCategory($categoryId){
-		return  $this->createQueryBuilder('c')
-			->where('c.category = :category_id')
-			->setParameter('category_id', $categoryId)
-			->getQuery()
-			->getResult();
-
-	}
-
-	public function getCommentsInPost($postId){
-		return  $this->createQueryBuilder('c')
-			->where('c.post = :post_id')
-			->setParameter('post_id', $postId)
-			->getQuery()
-			->getResult();
-
-	}
-}
+{}
