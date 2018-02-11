@@ -2,6 +2,7 @@
 
 namespace Helkiper\BlogBundle\Controller;
 
+use Helkiper\BlogBundle\Entity\Comment;
 use Helkiper\BlogBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,12 +61,17 @@ class PostController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInPost($post->getId());
 
+	    $comment = new Comment();
+	    $comment->setPost($post);
+	    $newCommentForm = $this->createForm('Helkiper\BlogBundle\Form\CommentType', $comment);
+
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'comments' => $comments,
             'delete_form' => $deleteForm->createView(),
+	        'new_comment_form' => $newCommentForm->createView(),
         ));
     }
 

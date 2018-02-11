@@ -1,8 +1,6 @@
-{% extends 'base.html.twig' %}
+<h4>Добавить коментарий</h4>
 
-{% block body %}
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-{% endblock %}
+{{ form_start(new_comment_form) }}
+    {{ form_widget(new_comment_form) }}
+    <input type="submit" value="Добавить" />
+{{ form_end(new_comment_form) }}

@@ -3,6 +3,7 @@
 namespace Helkiper\BlogBundle\Controller;
 
 use Helkiper\BlogBundle\Entity\Category;
+use Helkiper\BlogBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -63,11 +64,16 @@ class CategoryController extends Controller
         $posts = $em->getRepository('HelkiperBlogBundle:Post')->getPostsInCategory($category->getId());
         $comments = $em->getRepository('HelkiperBlogBundle:Comment')->getCommentsInCategory($category->getId());
 
+        $comment = new Comment();
+        $comment->setCategory($category);
+        $newCommentForm = $this->createForm('Helkiper\BlogBundle\Form\CommentType', $comment);
+
         return $this->render('category/show.html.twig', array(
             'category' => $category,
             'posts' => $posts,
             'comments' => $comments,
             'delete_form' => $deleteForm->createView(),
+	        'new_comment_form' => $newCommentForm->createView(),
         ));
     }
 
