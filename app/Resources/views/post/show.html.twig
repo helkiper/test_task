@@ -1,5 +1,11 @@
 {% extends 'layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/helkiperblog/js/commentFormHandler.js') }}"></script>
+{% endblock %}
+
 {% block header %}
     <h1>{{ post.name }}</h1>
 {% endblock %}

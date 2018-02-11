@@ -5,6 +5,7 @@ namespace Helkiper\BlogBundle\Controller;
 use Helkiper\BlogBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Comment controller.
@@ -33,22 +34,32 @@ class CommentController extends Controller
      */
     public function newAction(Request $request)
     {
-        $comment = new Comment();
-        $form = $this->createForm('Helkiper\BlogBundle\Form\CommentType', $comment);
-        $form->handleRequest($request);
+	    $content = '';
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
+	    $comment = new Comment();
+	    $form = $this->createForm('Helkiper\BlogBundle\Form\CommentType', $comment);
+	    $form->handleRequest($request);
 
-            return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
+	    if ($form->isSubmitted() && $form->isValid()) {
+		    $em = $this->getDoctrine()->getManager();
+		    $em->persist($comment);
+		    $em->flush();
+
+		    $content = $this->renderView('comment/single_comment.html.twig', array('comment' => $comment));
+	    }
+
+	    if($request->isXmlHttpRequest()) {
+			return $this->json(array('content' => $content));
+	    }
+        else {
+	        if ($comment->getCategory()) {
+		        return $this->redirectToRoute('category_show', array('id' => $comment->getCategory()->getId()));
+	        } elseif ($comment->getPost()) {
+		        return $this->redirectToRoute('post_show', array('id' => $comment->getPost()->getId()));
+	        } else {
+		        throw new NotFoundHttpException();
+	        }
         }
-
-        return $this->render('comment/new.html.twig', array(
-            'comment' => $comment,
-            'form' => $form->createView(),
-        ));
     }
 
 }
