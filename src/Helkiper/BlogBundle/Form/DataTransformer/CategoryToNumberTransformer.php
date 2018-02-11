@@ -11,11 +11,10 @@ namespace Helkiper\BlogBundle\Form\DataTransformer;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Helkiper\BlogBundle\Entity\Category;
-use Helkiper\BlogBundle\Entity\Post;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class PostToNumberTransformer implements DataTransformerInterface
+class CategoryToNumberTransformer implements DataTransformerInterface
 {
 	private $em;
 
@@ -90,15 +89,15 @@ class PostToNumberTransformer implements DataTransformerInterface
 			return;
 		}
 
-		$post = $this->em->getRepository(Post::class)->find($postNumber);
+		$category = $this->em->getRepository(Category::class)->find($postNumber);
 
-		if($post === null){
+		if($category === null){
 			throw  new TransformationFailedException(sprintf(
 				'Категория с Id %s не существует',
 				$postNumber
 			));
 		}
 
-		return $post;
+		return $category;
 	}
 }

@@ -4,6 +4,7 @@ namespace Helkiper\BlogBundle\Form;
 
 use Doctrine\DBAL\Types\TextType;
 use Helkiper\BlogBundle\Form\DataTransformer\CategoryToNumberTransformer;
+use Helkiper\BlogBundle\Form\DataTransformer\PostToNumberTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -13,10 +14,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CommentType extends AbstractType
 {
 	private $categoryTransformer;
+	private $postTransformer;
 
-	public function __construct(CategoryToNumberTransformer $categoryTransformer)
+	public function __construct(CategoryToNumberTransformer $categoryTransformer, PostToNumberTransformer $postTransformer)
 	{
 		$this->categoryTransformer = $categoryTransformer;
+		$this->postTransformer = $postTransformer;
 	}
 
 	/**
@@ -27,10 +30,11 @@ class CommentType extends AbstractType
         $builder
 	        ->add('author')
 	        ->add('content')
-	        ->add('category', HiddenType::class)
-	        ->add('post', HiddenType::class);
+	        ->add('post', HiddenType::class)
+	    ->add('category', HiddenType::class);
 
         $builder->get('category')->addModelTransformer($this->categoryTransformer);
+        $builder->get('post')->addModelTransformer($this->postTransformer);
     }/**
      * {@inheritdoc}
      */
