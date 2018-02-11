@@ -24,7 +24,7 @@ class Visit
     /**
      * @var int
      *
-     * @ORM\Column(name="sessionId", type="integer", unique=true)
+     * @ORM\Column(name="sessionId", type="string", unique=true)
      */
     private $sessionId;
 
@@ -63,7 +63,7 @@ class Visit
     /**
      * Set sessionId.
      *
-     * @param int $sessionId
+     * @param string $sessionId
      *
      * @return Visit
      */
@@ -77,7 +77,7 @@ class Visit
     /**
      * Get sessionId.
      *
-     * @return int
+     * @return string
      */
     public function getSessionId()
     {

@@ -33,3 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    Helkiper\BlogBundle\EventListener\StatisticTerminateListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.terminate }
