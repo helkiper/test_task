@@ -26,7 +26,7 @@ class StatisticTerminateListener
 	public function onKernelTerminate(PostResponseEvent $event){
 		$request = $event->getRequest();
 
-		if($request->hasSession()) {
+		if($request->hasSession() /* && $request->getSession()->getId() */) {
 			$session = $request->getSession();
 			$userAgent = $request->headers->get('User-Agent');
 
@@ -45,7 +45,7 @@ class StatisticTerminateListener
 					->setBrowser($this->guessBrowser($userAgent));
 
 				$this->em->persist($visit);
-				$this->em->flush();
+//				$this->em->flush();
 			}
 		}
 	}
