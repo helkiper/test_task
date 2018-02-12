@@ -28,19 +28,36 @@ class StatisticTerminateListener
 
 		if($request->hasSession()) {
 			$session = $request->getSession();
+			$userAgent = $request->headers->get('User-Agent');
 
-			$visit = $this->em->getRepository('HelkiperBlogBundle:Visit')->findBy(array('sessionId' => $session->getId()));
+			$visit = $this->em->getRepository('HelkiperBlogBundle:Visit')->findBy(array(
+				'sessionId' => $session->getId(),
+				'userAgent' => $userAgent,
+				'ip' => $request->getClientIp()
+			));
 			if (!$visit){
+
 				$visit = new Visit();
 				$visit
 					->setSessionId($session->getId())
 					->setIp($request->getClientIp())
-					->setUserAgent($request->headers->get('User-Agent'));
+					->setUserAgent($userAgent)
+					->setBrowser($this->guessBrowser($userAgent));
 
 				$this->em->persist($visit);
 				$this->em->flush();
 			}
 		}
+	}
+
+	private function guessBrowser($userAgent){
+		if(strpos($userAgent, 'MSIE')) return 'Internet Explorer';
+		if(strpos($userAgent, 'Edge')) return 'Microsoft Edge';
+		if(strpos($userAgent, 'Firefox')) return 'Firefox';
+		if(strpos($userAgent, 'Opera') || strpos($userAgent, 'OPR')) return 'Opera';
+		if(strpos($userAgent, 'Chrome')) return 'Chrome';
+		if(strpos($userAgent, 'Safary')) return 'Safary';
+		return 'Другой';
 	}
 
 //	private function addNewVisit(Request $request)
