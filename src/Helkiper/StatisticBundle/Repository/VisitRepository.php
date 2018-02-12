@@ -10,4 +10,19 @@ namespace Helkiper\BlogBundle\Repository;
  */
 class VisitRepository extends \Doctrine\ORM\EntityRepository
 {
+//return  $this->createQueryBuilder('t')
+//->select('count(t.id) as c')
+//->where('t.category = :category_id')
+//->setParameter('category_id', $categoryId)sawdefgffdffffff2e1wzzdrfrfffdxxxxxdsaaq
+//->setMaxResults(1)
+//->getQuery,()
+//->getSingleScalarResult();aqaawaaaashjkjhwqw3wesEETFSEDVVSW35GHUKJ.,
+
+	public function getVisitedBrowserCount(){
+		return $this->createQueryBuilder('v')
+			->select('count(v.id) as c, v.browser as b')
+			->addGroupBy('v.browser')
+			->getQuery()
+			->getResult();
+	}
 }
