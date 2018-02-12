@@ -1,3 +1,7 @@
+helkiper_statistic:
+    resource: "@HelkiperStatisticBundle/Resources/config/routing.yml"
+    prefix:   /stat
+
 helkiper_blog:
     resource: "@HelkiperBlogBundle/Resources/config/routing.yml"
     prefix:   /

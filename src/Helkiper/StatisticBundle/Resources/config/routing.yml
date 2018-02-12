@@ -1,0 +1,3 @@
+helkiper_statistic_homepage:
+    path:     /
+    defaults: { _controller: HelkiperStatisticBundle:Default:index }
