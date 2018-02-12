@@ -6,12 +6,11 @@
  * Time: 21:58
  */
 
-namespace Helkiper\BlogBundle\EventListener;
+namespace Helkiper\StatisticBundle\EventListener;
 
 
 use Doctrine\ORM\EntityManagerInterface;
 use Helkiper\BlogBundle\Entity\Visit;
-use http\Env\Request;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 
 class StatisticTerminateListener

@@ -8,6 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('HelkiperStatisticBundle:Default:index.html.twig');
+    	$em = $this->getDoctrine()->getManager();
+    	$browsers = $em->getRepository('HelkiperStatisticBundle:Visit')->getVisitedBrowserCount();
+        return $this->render('visit/list.html.twig', array(
+//        return $this->render('@HelkiperStatistic/Default/list.html.twig', array(
+        	'browsers' => $browsers
+        ));
     }
 }

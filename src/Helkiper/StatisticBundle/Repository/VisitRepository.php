@@ -1,6 +1,6 @@
 <?php
 
-namespace Helkiper\BlogBundle\Repository;
+namespace Helkiper\StatisticBundle\Repository;
 
 /**
  * VisitRepository

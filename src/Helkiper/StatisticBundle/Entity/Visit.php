@@ -1,6 +1,6 @@
 <?php
 
-namespace Helkiper\BlogBundle\Entity;
+namespace Helkiper\StatisticBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Visit
  *
  * @ORM\Table(name="visit")
- * @ORM\Entity(repositoryClass="Helkiper\BlogBundle\Repository\VisitRepository")
+ * @ORM\Entity(repositoryClass="Helkiper\StatisticBundle\Repository\VisitRepository")
  */
 class Visit
 {
