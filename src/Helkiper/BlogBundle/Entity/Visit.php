@@ -45,9 +45,9 @@ class Visit
     /**
      * @var string|null
      *
-     * @ORM\Column(name="userAgentType", type="string", length=20, nullable=true)
+     * @ORM\Column(name="browser", type="string", length=20, nullable=true)
      */
-    private $userAgentType;
+    private $browser;
 
 
     /**
@@ -135,13 +135,13 @@ class Visit
     /**
      * Set userAgentType.
      *
-     * @param string|null $userAgentType
+     * @param string|null $browser
      *
      * @return Visit
      */
-    public function setUserAgentType($userAgentType = null)
+    public function setBrowser($browser = null)
     {
-        $this->userAgentType = $userAgentType;
+        $this->browser = $browser;
 
         return $this;
     }
@@ -151,8 +151,8 @@ class Visit
      *
      * @return string|null
      */
-    public function getUserAgentType()
+    public function getBrowser()
     {
-        return $this->userAgentType;
+        return $this->browser;
     }
 }
