@@ -30,7 +30,7 @@ class StatisticTerminateListener
 			$session = $request->getSession();
 			$userAgent = $request->headers->get('User-Agent');
 
-			$visit = $this->em->getRepository('HelkiperBlogBundle:Visit')->findBy(array(
+			$visit = $this->em->getRepository('HelkiperStatisticBundle:Visit')->findBy(array(
 				'sessionId' => $session->getId()/*,
 				'userAgent' => $userAgent,
 				'ip' => $request->getClientIp()*/
