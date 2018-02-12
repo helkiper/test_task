@@ -31,9 +31,9 @@ class StatisticTerminateListener
 			$userAgent = $request->headers->get('User-Agent');
 
 			$visit = $this->em->getRepository('HelkiperBlogBundle:Visit')->findBy(array(
-				'sessionId' => $session->getId(),
+				'sessionId' => $session->getId()/*,
 				'userAgent' => $userAgent,
-				'ip' => $request->getClientIp()
+				'ip' => $request->getClientIp()*/
 			));
 			if (!$visit){
 
