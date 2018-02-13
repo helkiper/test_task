@@ -18,7 +18,7 @@
                     <span class="category pull-right">Категория:&nbsp;{{ post.category }}</span>
                     {% if post.file %}
                         <div>
-                            <img class="post-image" src="{{ asset('bundles/helkiperblog/images/uploads/'~post.file) }}">
+                            <img class="post-image" src="{{ asset('uploads/'~post.file) }}">
                         </div>
                     {% endif %}
                     <div>

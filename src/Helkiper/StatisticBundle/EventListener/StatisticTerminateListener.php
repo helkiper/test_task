@@ -10,7 +10,7 @@ namespace Helkiper\StatisticBundle\EventListener;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use Helkiper\BlogBundle\Entity\Visit;
+use Helkiper\StatisticBundle\Entity\Visit;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 
 class StatisticTerminateListener
@@ -25,7 +25,7 @@ class StatisticTerminateListener
 	public function onKernelTerminate(PostResponseEvent $event){
 		$request = $event->getRequest();
 
-		if($request->hasSession() /* && $request->getSession()->getId() */) {
+		if($request->hasSession() && $request->getSession()->getId()) {
 			$session = $request->getSession();
 			$userAgent = $request->headers->get('User-Agent');
 
@@ -44,7 +44,7 @@ class StatisticTerminateListener
 					->setBrowser($this->guessBrowser($userAgent));
 
 				$this->em->persist($visit);
-//				$this->em->flush();
+				$this->em->flush();
 			}
 		}
 	}
