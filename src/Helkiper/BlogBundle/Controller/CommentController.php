@@ -23,7 +23,7 @@ class CommentController extends Controller
 
         $comments = $em->getRepository('HelkiperBlogBundle:Comment')->findAll();
 
-        return $this->render('comment_list.html.twig', array(
+        return $this->render('comment/main.html.twig', array(
             'comments' => $comments,
         ));
     }
@@ -45,7 +45,12 @@ class CommentController extends Controller
 		    $em->persist($comment);
 		    $em->flush();
 
-		    $content = $this->renderView('comment/single_comment.html.twig', array('comment' => $comment));
+		    $comments = $em->getRepository('HelkiperBlogBundle:Comment')->findBy(array(
+		    	'post' => $comment->getPost(),
+			    'category' => $comment->getCategory()
+		    ));
+
+		    $content = $this->renderView('comment/list.html.twig', array('comments' => $comments));
 	    }
 
 	    if($request->isXmlHttpRequest()) {

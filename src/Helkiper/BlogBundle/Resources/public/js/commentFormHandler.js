@@ -1,8 +1,6 @@
 $(function () {
-    $('form').on('submit', function (e) {
+    $('form.main').on('submit', function (e) {
        e.preventDefault();
-
-       // var data =
 
        $.ajax({
            'url': $(this).attr('action'),
@@ -11,9 +9,8 @@ $(function () {
            'dataType': 'json'
        })
            .done(function (data) {
-               $('#commentList').append(data);
-               $('form').get(0).reset();
-               console.log(data);
+                $('#commentContainer').replaceWith(data.content);
+                $('form.main').get(0).reset();
            });
 
        return false;

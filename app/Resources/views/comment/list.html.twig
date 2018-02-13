@@ -1,0 +1,19 @@
+<div id="commentContainer">
+    {% if comments|length > 0 %}
+        <h2>Коментарии</h2>
+
+        <div class="row list-group" id="commentList">
+            {% for comment in comments %}
+                <article class="col-xs-12 list-group-item">
+                    <p>
+                        <strong>{{ comment.author }}</strong>
+                        <span class="category pull-right">{{ comment.createdAt|date('Y-m-d') }}</span>
+                    </p>
+                    <p>
+                        <small>{{ comment.content }}</small>
+                    </p>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
