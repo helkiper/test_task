@@ -4,6 +4,7 @@ namespace Helkiper\BlogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -26,6 +27,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -33,6 +35,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank()
      */
     private $content;
 
@@ -40,6 +43,7 @@ class Post
      * @var string|null
      *
      * @ORM\Column(name="file", type="string", length=255, nullable=true)
+     * @Assert\Image(maxSize="2M")
      */
     private $file;
 

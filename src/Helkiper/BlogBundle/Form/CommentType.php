@@ -28,7 +28,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-	        ->add('author')
+	        ->add('author', null, array('attr' => array('placeholder' => 'Имя Фамилия')))
 	        ->add('content')
 	        ->add('post', HiddenType::class)
 	    ->add('category', HiddenType::class);
