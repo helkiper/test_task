@@ -57,3 +57,7 @@ form.main input[type="submit"]{
     line-height: 26px;
     min-height: 26px;
 }
+
+.smallPicture{
+    width: 100px;
+}

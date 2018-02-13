@@ -4,6 +4,7 @@ namespace Helkiper\BlogBundle\Controller;
 
 use Helkiper\BlogBundle\Entity\Comment;
 use Helkiper\BlogBundle\Entity\Post;
+use Helkiper\BlogBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -34,7 +35,7 @@ class PostController extends Controller
      * Creates a new post entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $post = new Post();
         $form = $this->createForm('Helkiper\BlogBundle\Form\PostType', $post);
@@ -43,15 +44,8 @@ class PostController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 	        $file = $post->getFile();
 	        if($file) {
-
-		        $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
-		        $file->move(
-			        $this->getParameter('uploads_directory'),
-			        $fileName
-		        );
-
-		        $post->setFile($fileName);
+		        $fileName = $fileUploader->upload($file);
+				$post->setFile($fileName);
 	        }
 
             $em = $this->getDoctrine()->getManager();
@@ -94,7 +88,7 @@ class PostController extends Controller
      * Displays a form to edit an existing post entity.
      *
      */
-    public function editAction(Request $request, Post $post)
+    public function editAction(Request $request, Post $post, FileUploader $fileUploader)
     {
     	$filename = $post->getFile();
     	if($filename) {
@@ -107,20 +101,12 @@ class PostController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
         	if($post->isDeleteFile()){
-        		//TODO: deleteFile
-		        $post->setFile('');
+        		$post->setFile('');
 	        }
         	elseif ($post->getFile()){
 		        $file = $post->getFile();
 		        if($file) {
-
-			        $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
-			        $file->move(
-				        $this->getParameter('uploads_directory'),
-				        $fileName
-			        );
-
+			        $fileName = $fileUploader->upload($file);
 			        $post->setFile($fileName);
 		        }
 	        }

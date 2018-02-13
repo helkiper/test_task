@@ -42,3 +42,7 @@ services:
     Helkiper\StatisticBundle\EventListener\StatisticTerminateListener:
         tags:
             - { name: kernel.event_listener, event: kernel.terminate }
+
+    Helkiper\BlogBundle\Service\FileUploader:
+        arguments:
+            $targetDir: '%uploads_directory%'

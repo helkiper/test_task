@@ -11,7 +11,7 @@
         {{ form_row(edit_form.category) }}
         {{ form_row(edit_form.content) }}
         {% if post.file %}
-            <img src="{{ asset('bundles/helkiperblog/images/uploads/'~filename) }}" />
+            <img src="{{ asset('uploads/'~filename) }}" class="smallPicture"/>
             {{ form_row(edit_form.deleteFile) }}
             <div class="invisible">
                 {{ form_rest(edit_form) }}
