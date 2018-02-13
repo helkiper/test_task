@@ -30,9 +30,7 @@ class StatisticTerminateListener
 			$userAgent = $request->headers->get('User-Agent');
 
 			$visit = $this->em->getRepository('HelkiperStatisticBundle:Visit')->findBy(array(
-				'sessionId' => $session->getId()/*,
-				'userAgent' => $userAgent,
-				'ip' => $request->getClientIp()*/
+				'sessionId' => $session->getId()
 			));
 			if (!$visit){
 
@@ -50,14 +48,13 @@ class StatisticTerminateListener
 	}
 
 	private function guessBrowser($userAgent){
-		if(strpos($userAgent, 'MSIE')) return 'Internet Explorer';
-		if(strpos($userAgent, 'Edge')) return 'Microsoft Edge';
-		if(strpos($userAgent, 'Firefox')) return 'Firefox';
-		if(strpos($userAgent, 'Opera') || strpos($userAgent, 'OPR')) return 'Opera';
-		if(strpos($userAgent, 'Chrome')) return 'Chrome';
-		if(strpos($userAgent, 'Safary')) return 'Safary';
+		$browsers = ['Firefox', 'Opera', 'Chrome', 'Safary'];
+		for ($i = 0; $i < count($browsers); $i++){
+			if(strpos($userAgent, $browsers[$i])){
+				return $browsers[$i];
+			}
+		}
 		return 'Другой';
 	}
 
-//	private function addNewVisit(Request $request)
 }
