@@ -6,8 +6,23 @@
 
 {% block content %}
     {{ form_start(edit_form, {'attr': {'class': 'main'}}) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Изменить" />
+        {#{{ form_widget(edit_form) }}#}
+        {{ form_row(edit_form.name) }}
+        {{ form_row(edit_form.category) }}
+        {{ form_row(edit_form.content) }}
+        {% if post.file %}
+            <img src="{{ asset('bundles/helkiperblog/images/uploads/'~filename) }}" />
+            {{ form_row(edit_form.deleteFile) }}
+            <div class="invisible">
+                {{ form_rest(edit_form) }}
+            </div>
+        {% else %}
+            {{ form_row(edit_form.file) }}
+            <div class="invisible">
+                {{ form_rest(edit_form) }}
+            </div>
+        {% endif %}
+    <input type="submit" value="Изменить" />
     {{ form_end(edit_form) }}
 
     <div class="controls">

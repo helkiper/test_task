@@ -42,15 +42,17 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 	        $file = $post->getFile();
+	        if($file) {
 
-	        $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+		        $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
 
-	        $file->move(
-		        $this->getParameter('uploads_directory'),
-		        $fileName
-	        );
+		        $file->move(
+			        $this->getParameter('uploads_directory'),
+			        $fileName
+		        );
 
-	        $post->setFile($fileName);
+		        $post->setFile($fileName);
+	        }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
@@ -94,13 +96,35 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
-    	$post->setFile(new File($this->getParameter('uploads_directory') . '/' . $post->getFile()));
+    	$filename = $post->getFile();
+    	if($filename) {
+		    $post->setFile(new File($this->getParameter('uploads_directory') . '/' . $filename));
+	    }
 
         $deleteForm = $this->createDeleteForm($post);
         $editForm = $this->createForm('Helkiper\BlogBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+        	if($post->isDeleteFile()){
+        		//TODO: deleteFile
+		        $post->setFile('');
+	        }
+        	elseif ($post->getFile()){
+		        $file = $post->getFile();
+		        if($file) {
+
+			        $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+
+			        $file->move(
+				        $this->getParameter('uploads_directory'),
+				        $fileName
+			        );
+
+			        $post->setFile($fileName);
+		        }
+	        }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('post_show', array('id' => $post->getId()));
@@ -108,6 +132,7 @@ class PostController extends Controller
 
         return $this->render('post/edit.html.twig', array(
             'post' => $post,
+            'filename' => $filename,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

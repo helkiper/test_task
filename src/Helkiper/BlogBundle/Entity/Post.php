@@ -50,6 +50,29 @@ class Post
     private $category;
 
 	/**
+	 * @var $deleteFile boolean
+	 */
+    private $deleteFile;
+
+	/**
+	 * @return bool
+	 */
+	public function isDeleteFile()
+	{
+		return $this->deleteFile;
+	}
+
+	/**
+	 * @param bool $deleteFile
+	 * @return Post
+	 */
+	public function setDeleteFile($deleteFile)
+	{
+		$this->deleteFile = $deleteFile;
+		return $this;
+	}
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
 	 */
 	private $comments;
@@ -57,6 +80,7 @@ class Post
 	public function __construct()
 	{
 		$this->comments = new ArrayCollection();
+		$this->deleteFile = false;
 	}
 
 	public function __toString()
