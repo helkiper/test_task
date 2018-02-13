@@ -19,7 +19,7 @@ class PostType extends AbstractType
 	        ->add('name')
 	        ->add('file', FileType::class, array('required' => false))
 	        ->add('deleteFile', CheckboxType::class, array('label' => 'Удалить фото', 'required' => false))
-	        ->add('category')
+	        ->add('category', null, array('required' => true))
 	        ->add('content');
     }/**
      * {@inheritdoc}
